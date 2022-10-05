@@ -1,5 +1,4 @@
 import { HttpService } from '@nestjs/axios';
-import { AxiosError } from 'axios';
 import FormData from 'form-data';
 import { Inject, Injectable } from '@nestjs/common';
 import { LineNotifyModuleOptions } from './notify-options.interface';
@@ -53,8 +52,7 @@ export class LineNotifyService {
       );
       return data.access_token;
     } catch (error: any) {
-      if (error.name !== AxiosError.name) throw error;
-      const status = error.response.status;
+      const status = error?.response?.status;
       switch (status) {
         case 400:
           throw new InvalidCodeException();
@@ -74,8 +72,7 @@ export class LineNotifyService {
       );
       return data;
     } catch (error: any) {
-      if (error.name !== AxiosError.name) throw error;
-      const status = error.response.status;
+      const status = error?.response?.status;
       switch (status) {
         case 401:
           throw new InvalidTokenException();
@@ -99,8 +96,7 @@ export class LineNotifyService {
       );
       return data;
     } catch (error: any) {
-      if (error.name !== AxiosError.name) throw error;
-      const status = error.response.status;
+      const status = error?.response?.status;
       switch (status) {
         case 401:
           throw new InvalidTokenException();
@@ -153,8 +149,7 @@ export class LineNotifyService {
       );
       return data;
     } catch (error: any) {
-      if (error.name !== AxiosError.name) throw error;
-      const status = error.response.status;
+      const status = error?.response?.status;
       switch (status) {
         case 401:
           throw new InvalidTokenException();
