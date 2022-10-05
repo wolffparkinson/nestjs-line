@@ -18,7 +18,8 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@nestjs-line/messaging": ["packages/messaging/src/index.ts"]
+      "@nestjs-line/messaging": ["packages/messaging/src/index.ts"],
+      "@nestjs-line/notify": ["packages/notify/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
