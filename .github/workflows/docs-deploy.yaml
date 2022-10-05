@@ -1,16 +1,13 @@
 name: Deploy to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
-    paths:
-      - '!examples/**'
-      - '!packages/**'
-  workflow_dispatch:
-
-env:
-  CACHE_PREFIX: 'main-docs'
+    paths-ignore:
+      - 'examples/**'
+      - 'package/**'
 
 jobs:
   deploy:
@@ -39,8 +36,8 @@ jobs:
         id: pnpm-cache
         with:
           path: ${{ steps.pnpm-store.outputs.store_dir }}
-          key: ${{ runner.os }}-${{ env.CACHE_PREFIX }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: ${{ runner.os }}-${{ env.CACHE_PREFIX }}-pnpm-store-
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
