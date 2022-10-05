@@ -1,0 +1,26 @@
+{
+  "name": "@nestjs-line/messaging",
+  "description": "A module for creating LINE bots using NestJS, based on LINE Messaging API",
+  "version": "0.0.4-alpha.4",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.6.0",
+    "pnpm": ">=7.0.0"
+  },
+  "keywords": [
+    "nest",
+    "nestjs",
+    "nestjs-module",
+    "line",
+    "line bot",
+    "line bot sdk",
+    "line messaging api",
+    "bot",
+    "bot api",
+    "bot framework"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "path-to-regexp": "^6.2.1"
+  }
+}
