@@ -11,7 +11,7 @@ type FeatureItem = {
 const FeatureList: FeatureItem[] = [
   {
     title: 'Easy to Use',
-    image: '/img/undraw_docusaurus_mountain.svg',
+    image: 'img/undraw_docusaurus_mountain.svg',
     description: (
       <>
         NestJS LINE is designed to be easily installed and used to get your LINE
@@ -21,7 +21,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Focus on What Matters',
-    image: '/img/undraw_docusaurus_tree.svg',
+    image: 'img/undraw_docusaurus_tree.svg',
     description: (
       <>
         NestJS LINE lets you focus on your bot, and we&apos;ll do the chores. Go
@@ -31,7 +31,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Inspired by Necord',
-    image: '/img/undraw_docusaurus_react.svg',
+    image: 'img/undraw_docusaurus_react.svg',
     description: (
       <>
         NestJS LINE was inspired by{' '}
