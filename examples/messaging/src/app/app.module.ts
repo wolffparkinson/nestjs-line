@@ -23,7 +23,7 @@ import { ExamplesModule } from './examples.module';
           channelAccessToken: config.getOrThrow('lineMessagingToken'),
           channelSecret: config.getOrThrow('lineMessagingSecret'),
           prefix: '.',
-          webhookUrl: process.env['LINE_WEBHOOK_URL'],
+          setWebhookUrl: process.env['LINE_WEBHOOK_URL'],
         };
       },
     }),

@@ -28,8 +28,8 @@ export class LineMessagingService
   }
 
   async onApplicationBootstrap() {
-    if (this.options.webhookUrl) {
-      const url = `${this.options.webhookUrl}/line/messaging`;
+    const url = this.options.setWebhookUrl;
+    if (url) {
       await this.client.setWebhookEndpointUrl(url);
       if (this.options.debug)
         this.logger.debug(`LINE Messaging webhook url set to : ${url}`);
