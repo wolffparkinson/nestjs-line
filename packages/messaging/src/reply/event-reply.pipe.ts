@@ -83,10 +83,7 @@ export class EventReply {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const replyToken = event.replyToken;
-    if (!replyToken)
-      throw new Error(
-        `Cannot reply to event of type ${event.type}. Event does not have a replyToken.`
-      );
+    if (!replyToken) return;
     return new EventReply(replyToken, client);
   }
 }
