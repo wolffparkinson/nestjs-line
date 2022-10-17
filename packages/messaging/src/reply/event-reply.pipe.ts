@@ -1,4 +1,10 @@
-import { Client, Message, QuickReply, TextMessage } from '@line/bot-sdk';
+import {
+  Client,
+  Message,
+  QuickReply,
+  TextMessage,
+  WebhookEvent,
+} from '@line/bot-sdk';
 import { stringSplit } from '../utils/string-split';
 import { Injectable, Logger, PipeTransform } from '@nestjs/common';
 
@@ -71,5 +77,16 @@ export class EventReply {
       messages,
       notificationDisabled
     );
+  }
+
+  public static fromEvent(event: WebhookEvent, client: Client) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
+    const replyToken = event.replyToken;
+    if (!replyToken)
+      throw new Error(
+        `Cannot reply to event of type ${event.type}. Event does not have a replyToken.`
+      );
+    return new EventReply(replyToken, client);
   }
 }
