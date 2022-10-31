@@ -42,7 +42,8 @@ export class LineMessagingService
 
   public handleEvents(events: WebhookEvent[]) {
     return events.map((event) => {
-      return this.emit<any>(event.type, event);
+      this.emit<any>(event.type, event);
+      this.emit<'event'>('event', event);
     });
   }
 }

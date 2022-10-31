@@ -1,4 +1,5 @@
 import {
+  WebhookEvent,
   MessageEvent,
   UnsendEvent,
   FollowEvent,
@@ -32,4 +33,5 @@ export interface MessagingClientEvents {
   things: [
     DeviceLinkEvent | DeviceUnlinkEvent | LINEThingsScenarioExecutionEvent
   ];
+  event: [WebhookEvent];
 }
