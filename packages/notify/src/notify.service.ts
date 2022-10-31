@@ -160,20 +160,20 @@ export class LineNotifyService {
   }
 }
 
-interface TokenResponse {
+export interface TokenResponse {
   status: number;
   message: string;
   access_token: string;
 }
 
-interface TokenStatus {
+export interface TokenStatus {
   status: number;
   message: string;
   target: string;
   targetType: 'USER' | 'GROUP';
 }
 
-interface TokenRevoke {
+export interface TokenRevoke {
   status: number;
   message: string;
 }
