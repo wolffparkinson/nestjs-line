@@ -14,8 +14,11 @@ export class ListenersService implements OnModuleInit {
   public onModuleInit() {
     return this.explorerService
       .explore(LISTENERS_METADATA)
-      .forEach((listener) =>
-        this.client.on(listener.getEvent(), (...args) => listener.execute(args))
-      );
+      .forEach((listener) => {
+        const events = listener.getEvents();
+        events.forEach((event) => {
+          this.client.on(event, (...args) => listener.execute(args));
+        });
+      });
   }
 }
