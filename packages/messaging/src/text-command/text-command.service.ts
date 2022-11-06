@@ -16,7 +16,7 @@ import { LineMessagingService } from '../messaging.service';
 export class TextCommandService
   implements OnModuleInit, OnApplicationBootstrap
 {
-  private readonly textCommands = new Map<string, TextCommandDiscovery>();
+  public readonly textCommands = new Map<string, TextCommandDiscovery>();
   private readonly logger = new Logger(TextCommandService.name);
 
   public constructor(

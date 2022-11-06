@@ -10,7 +10,7 @@ import { PostbackDiscovery } from './postback.discovery';
 
 @Injectable()
 export class PostbackService implements OnModuleInit, OnApplicationBootstrap {
-  private readonly postbacks = new Map<string, PostbackDiscovery>();
+  public readonly postbacks = new Map<string, PostbackDiscovery>();
 
   public constructor(
     private readonly service: LineMessagingService,
