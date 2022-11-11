@@ -1,7 +1,7 @@
 {
   "name": "@nestjs-line/notify",
   "description": "NestJS module for interacting with LINE Notify API",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.1-alpha.5",
   "type": "commonjs",
   "engines": {
     "node": ">=16.6.0",
