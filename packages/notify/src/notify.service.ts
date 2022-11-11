@@ -3,6 +3,14 @@ import FormData from 'form-data';
 import { Inject, Injectable } from '@nestjs/common';
 import { LineNotifyModuleOptions } from './notify-options.interface';
 import { MODULE_OPTIONS_TOKEN } from './notify.module-definition';
+import {
+  TokenResponse,
+  TokenStatus,
+  TokenRevoke,
+  GenerateOauthUrlOptions,
+  SendNotificationOptions,
+} from './notify.interface';
+import { InvalidCodeException, InvalidTokenException } from './notify.error';
 
 // API Docs : https://notify-bot.line.me/doc/en/
 
@@ -20,10 +28,7 @@ export class LineNotifyService {
     private readonly httpService: HttpService
   ) {}
 
-  public generateOauthURL(options: {
-    state: string;
-    responseMode?: 'form_post';
-  }) {
+  public generateOauthURL(options: GenerateOauthUrlOptions) {
     const { state, responseMode } = options;
 
     const url = new URL(this.oauthUrlBase + '/authorize');
@@ -106,20 +111,12 @@ export class LineNotifyService {
     }
   }
 
-  public async send(options: {
-    token: string;
-    message: string;
-    imageURL?: string;
-    imageThumbnailURL?: string;
-    // imageFile?: ReadableStream;
-    notificationDisabled?: boolean;
-    sticker?: { packageId: number; id: number };
-  }) {
+  public async send(options: SendNotificationOptions) {
     const {
       message,
       token,
-      imageThumbnailURL,
-      imageURL,
+      imageThumbnailUrl,
+      imageUrl,
       // imageFile,
       sticker,
       notificationDisabled,
@@ -132,8 +129,8 @@ export class LineNotifyService {
 
     const form = new FormData();
     form.append('message', message);
-    if (imageURL) form.append('imageFullsize', imageURL);
-    if (imageThumbnailURL) form.append('imageThumbnail', imageThumbnailURL);
+    if (imageUrl) form.append('imageFullsize', imageUrl);
+    if (imageThumbnailUrl) form.append('imageThumbnail', imageThumbnailUrl);
     // if (imageFile) form.append('imageFile', imageFile);
     if (sticker) {
       form.append('stickerPackageId', sticker.packageId);
@@ -157,37 +154,5 @@ export class LineNotifyService {
           throw error;
       }
     }
-  }
-}
-
-export interface TokenResponse {
-  status: number;
-  message: string;
-  access_token: string;
-}
-
-export interface TokenStatus {
-  status: number;
-  message: string;
-  target: string;
-  targetType: 'USER' | 'GROUP';
-}
-
-export interface TokenRevoke {
-  status: number;
-  message: string;
-}
-
-export class InvalidCodeException extends Error {
-  override name = InvalidCodeException.name;
-  constructor() {
-    super('Invalid code');
-  }
-}
-
-export class InvalidTokenException extends Error {
-  override name = InvalidTokenException.name;
-  constructor() {
-    super('Invalid access token');
   }
 }
