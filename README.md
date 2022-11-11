@@ -27,6 +27,7 @@ This package is inspired by [Necord](https://github.com/necordjs/necord), a Nest
 | Package                                          | Description                             | Version                                                                                                                     |
 | ------------------------------------------------ | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | [`@nestjs-line/messaging`](./packages/messaging) | Build LINE bot using LINE Messaging API | [![version](https://img.shields.io/npm/v/@nestjs-line/messaging.svg)](https://www.npmjs.com/package/@nestjs-line/messaging) |
+| [`@nestjs-line/notify`](./packages/notify) | Send notifications via LINE Notify | [![version](https://img.shields.io/npm/v/@nestjs-line/notify.svg)](https://www.npmjs.com/package/@nestjs-line/notify) |
 
 ## Contribute
 
