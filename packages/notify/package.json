@@ -1,0 +1,19 @@
+{
+  "name": "@nestjs-line/notify",
+  "description": "NestJS module for interacting with LINE Notify API",
+  "version": "0.0.1-alpha.4",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=16.6.0",
+    "pnpm": ">=7.0.0"
+  },
+  "keywords": [
+    "nest",
+    "nestjs",
+    "nestjs-module",
+    "line",
+    "line notify"
+  ],
+  "license": "MIT",
+  "dependencies": {}
+}

@@ -22,6 +22,11 @@ import { ListenerDiscovery, ListenersService } from './listeners';
     ListenerDiscovery,
     ListenersService,
   ],
-  exports: [MessagingClientProvider, LineMessagingService],
+  exports: [
+    MessagingClientProvider,
+    LineMessagingService,
+    TextCommandService,
+    PostbackService,
+  ],
 })
 export class LineMessagingModule extends ConfigurableModuleClass {}

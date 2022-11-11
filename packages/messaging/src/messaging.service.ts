@@ -28,17 +28,22 @@ export class LineMessagingService
   }
 
   async onApplicationBootstrap() {
-    if (this.options.webhookUrl) {
-      const url = `${this.options.webhookUrl}/line/messaging`;
-      await this.client.setWebhookEndpointUrl(url);
-      if (this.options.debug)
-        this.logger.debug(`LINE Messaging webhook url set to : ${url}`);
+    const url = this.options.setWebhookUrl;
+    if (url) {
+      try {
+        await this.client.setWebhookEndpointUrl(url);
+        if (this.options.debug)
+          this.logger.debug(`LINE Messaging webhook url set to : ${url}`);
+      } catch (e) {
+        this.logger.error(e);
+      }
     }
   }
 
   public handleEvents(events: WebhookEvent[]) {
     return events.map((event) => {
-      return this.emit<any>(event.type, event);
+      this.emit<any>(event.type, event);
+      this.emit<'event'>('event', event);
     });
   }
 }

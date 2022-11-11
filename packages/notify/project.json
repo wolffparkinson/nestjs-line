@@ -1,0 +1,47 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/notify/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/notify",
+        "tsConfig": "packages/notify/tsconfig.lib.json",
+        "packageJson": "packages/notify/package.json",
+        "main": "packages/notify/src/index.ts",
+        "assets": ["packages/notify/*.md"],
+        "generatePackageJson": true
+      }
+    },
+    "release": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "pnpm publish dist/packages/notify --access public"
+      },
+      "dependsOn": [
+        {
+          "projects": "self",
+          "target": "build"
+        }
+      ]
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/notify/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/notify"],
+      "options": {
+        "jestConfig": "packages/notify/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

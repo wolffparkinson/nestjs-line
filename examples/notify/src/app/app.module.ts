@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
-import { LineMessagingModule } from '@nestjs-line/messaging';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import {
   configuration,
   ValidatedConfigService,
 } from './configuration/configuration';
 import { validationSchema } from './configuration/validation';
-import { ExamplesModule } from './examples.module';
+import { NotifyExampleModule } from './notify-example.module';
+import { LineNotifyModule } from '@nestjs-line/notify';
 
 @Module({
   imports: [
@@ -15,19 +15,18 @@ import { ExamplesModule } from './examples.module';
       load: [configuration],
       validationSchema,
     }),
-    LineMessagingModule.registerAsync({
+    LineNotifyModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (config: ValidatedConfigService) => {
         return {
-          channelAccessToken: config.getOrThrow('lineMessagingToken'),
-          channelSecret: config.getOrThrow('lineMessagingSecret'),
-          prefix: '.',
-          setWebhookUrl: process.env['LINE_WEBHOOK_URL'],
+          clientId: config.getOrThrow('notifyClientId'),
+          clientSecret: config.getOrThrow('notifyClientSecret'),
+          redirectUrl: config.getOrThrow('notifyRedirectUri'),
         };
       },
     }),
-    ExamplesModule,
+    NotifyExampleModule,
   ],
 })
 export class AppModule {}
