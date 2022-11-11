@@ -132,8 +132,12 @@ export class LineNotifyService {
 
     const form = new FormData();
     form.append('message', message);
-    if (imageURL) form.append('imageFullsize', imageURL);
-    if (imageThumbnailURL) form.append('imageThumbnail', imageThumbnailURL);
+    if (imageURL) {
+      form.append('imageFullsize', imageURL);
+      if (imageThumbnailURL) form.append('imageThumbnail', imageThumbnailURL);
+      else form.append('imageThumbnail', imageURL);
+    }
+
     // if (imageFile) form.append('imageFile', imageFile);
     if (sticker) {
       form.append('stickerPackageId', sticker.packageId);
