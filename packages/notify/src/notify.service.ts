@@ -9,6 +9,7 @@ import {
   TokenRevoke,
   GenerateOauthUrlOptions,
   SendNotificationOptions,
+  SendNotificationResponse,
 } from './notify.interface';
 import { InvalidCodeException, InvalidTokenException } from './notify.error';
 
@@ -139,11 +140,12 @@ export class LineNotifyService {
     if (notificationDisabled) form.append('notificationDisabled', 'true');
 
     try {
-      const { data } = await this.httpService.axiosRef.postForm<TokenResponse>(
-        new URL(this.apiUrlBase + '/notify').toString(),
-        form,
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+      const { data } =
+        await this.httpService.axiosRef.postForm<SendNotificationResponse>(
+          new URL(this.apiUrlBase + '/notify').toString(),
+          form,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
       return data;
     } catch (error: any) {
       const status = error?.response?.status;

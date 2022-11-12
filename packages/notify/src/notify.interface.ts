@@ -30,3 +30,8 @@ export interface SendNotificationOptions {
   notificationDisabled?: boolean;
   sticker?: { packageId: number; id: number };
 }
+
+export interface SendNotificationResponse {
+  status: number;
+  message: string; 
+}
